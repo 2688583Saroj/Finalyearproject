@@ -1,0 +1,52 @@
+{
+    "dataset": "soil_weather_yield",
+    "rows": 10000,
+    "features": [
+        "N",
+        "P",
+        "K",
+        "Soil_pH",
+        "Soil_Moisture",
+        "Soil_Type",
+        "Organic_Carbon",
+        "Temperature",
+        "Humidity",
+        "Rainfall",
+        "Sunlight_Hours",
+        "Wind_Speed",
+        "Region",
+        "Altitude",
+        "Season",
+        "Crop_Type",
+        "Irrigation_Type",
+        "Fertilizer_Used",
+        "Pesticide_Used"
+    ],
+    "target": "Crop_Yield_ton_per_hectare",
+    "r2_score": 0.9977,
+    "mae": 0.9163,
+    "rmse": 1.1466,
+    "numeric_features": [
+        "N",
+        "P",
+        "K",
+        "Soil_pH",
+        "Soil_Moisture",
+        "Organic_Carbon",
+        "Temperature",
+        "Humidity",
+        "Rainfall",
+        "Sunlight_Hours",
+        "Wind_Speed",
+        "Altitude",
+        "Fertilizer_Used",
+        "Pesticide_Used"
+    ],
+    "categorical_features": [
+        "Soil_Type",
+        "Region",
+        "Season",
+        "Crop_Type",
+        "Irrigation_Type"
+    ]
+}

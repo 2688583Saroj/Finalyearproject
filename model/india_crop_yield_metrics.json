@@ -1,0 +1,32 @@
+{
+    "dataset": "india_crop_yield",
+    "rows": 19689,
+    "features": [
+        "Crop",
+        "Crop_Year",
+        "Season",
+        "State",
+        "Area",
+        "Production",
+        "Annual_Rainfall",
+        "Fertilizer",
+        "Pesticide"
+    ],
+    "target": "Yield",
+    "r2_score": 0.9864,
+    "mae": 7.7108,
+    "rmse": 104.5165,
+    "numeric_features": [
+        "Crop_Year",
+        "Area",
+        "Production",
+        "Annual_Rainfall",
+        "Fertilizer",
+        "Pesticide"
+    ],
+    "categorical_features": [
+        "Crop",
+        "Season",
+        "State"
+    ]
+}
