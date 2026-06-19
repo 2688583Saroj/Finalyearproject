@@ -1,36 +1,40 @@
 # Crop Yield Prediction using Random Forest Regression
 
-This is an improved VS Code-ready project for your dissertation.
+This is a Streamlit application for crop-yield prediction using a trained Random Forest Regression model.
 
 ## Features
 
-- Supports both uploaded CSV datasets
-- Random Forest Regression model
-- Automatic handling of numeric and categorical columns
-- Streamlit UI
-- Prediction page
-- Evaluation dashboard
-- R², MAE and RMSE metrics
-- Dataset preview and yield charts
+- India crop yield dataset support
+- Random Forest Regression prediction model
+- User registration and login
+- Farm location selection from dataset locations
+- Prediction history for registered users
+- Admin dashboard for users, predictions, datasets and model evaluation
+- R2, MAE and RMSE model metrics
+- Dataset preview, yield distribution and correlation charts
+- Model feature importance chart
+- Safer password hashing with PBKDF2
+- Admin credentials loaded from secrets or environment variables
 
 ## Folder Structure
 
 ```text
-crop_yield_project_improved/
-├── app.py
-├── train_model.py
-├── requirements.txt
-├── README.md
-├── data/
-│   ├── crop_yield.csv
-│   └── crop-yield.csv
-├── model/
-└── outputs/
+Random forest/
+|-- app.py
+|-- train_model.py
+|-- requirements.txt
+|-- README.md
+|-- secrets.example.toml
+|-- data/
+|   |-- crop_yield.csv
+|   `-- app_records.json
+|-- model/
+|   |-- india_crop_yield_metrics.json
+|   `-- india_crop_yield_model.pkl
+`-- outputs/
 ```
 
-## How to Run in VS Code
-
-Open the folder in VS Code, then run:
+## How to Run
 
 ```bash
 pip install -r requirements.txt
@@ -38,10 +42,25 @@ python train_model.py
 streamlit run app.py
 ```
 
-## Dataset Modes
+## Admin Login Setup
 
-### 1. India Crop Yield Dataset
-Uses:
+Admin credentials are not stored directly in `app.py`.
+
+For local development, create `.streamlit/secrets.toml` and use the format from `secrets.example.toml`:
+
+```toml
+ADMIN_EMAIL = "admin@example.com"
+ADMIN_PASSWORD = "change-this-password"
+```
+
+For Streamlit Community Cloud, add the same values in the app's Secrets settings.
+
+## Dataset
+
+### India Crop Yield Dataset
+
+Features used:
+
 - Crop
 - Crop_Year
 - Season
@@ -53,26 +72,22 @@ Uses:
 - Pesticide
 
 Target:
+
 - Yield
 
-### 2. Soil + Weather Dataset
-Uses:
-- N, P, K
-- Soil pH and moisture
-- Temperature
-- Humidity
-- Rainfall
-- Region
-- Season
-- Crop type
-- Irrigation type
-- Fertilizer used
-- Pesticide used
+## Deployment Checklist
 
-Target:
-- Crop_Yield_ton_per_hectare
+Make sure these files are included when deploying:
+
+- `app.py`
+- `train_model.py`
+- `requirements.txt`
+- `data/crop_yield.csv`
+- `model/india_crop_yield_metrics.json`
+- `model/india_crop_yield_model.pkl`
+
+Do not publish real user records. `data/app_records.json` should be empty or contain only safe sample data before submission.
 
 ## Notes for Dissertation
 
-You can describe the system as a machine-learning decision-support tool using Random Forest Regression. 
-The evaluation dashboard provides R², MAE and RMSE values, which can be included in your results chapter.
+You can describe the system as a machine-learning decision-support tool using Random Forest Regression. The evaluation dashboard provides R2, MAE, RMSE, data preview charts and feature importance values that can be included in the results chapter.

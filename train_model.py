@@ -19,14 +19,26 @@ DATASETS = {
         "target": "Yield",
         "drop_columns": [],
         "description": "Indian crop yield dataset with Crop, Season, State, rainfall, fertilizer and pesticide data."
-    },
-    "soil_weather_yield": {
-        "csv": "data/crop-yield.csv",
-        "target": "Crop_Yield_ton_per_hectare",
-        "drop_columns": [],
-        "description": "Soil, weather and crop management dataset with soil nutrients and climate inputs."
     }
 }
+
+
+def add_engineered_features(df):
+    df = df.copy()
+
+    if {"Production", "Area"}.issubset(df.columns):
+        safe_area = df["Area"].replace(0, pd.NA)
+        df["Production_per_Area"] = df["Production"] / safe_area
+
+    if {"Fertilizer", "Area"}.issubset(df.columns):
+        safe_area = df["Area"].replace(0, pd.NA)
+        df["Fertilizer_per_Area"] = df["Fertilizer"] / safe_area
+
+    if {"Pesticide", "Area"}.issubset(df.columns):
+        safe_area = df["Area"].replace(0, pd.NA)
+        df["Pesticide_per_Area"] = df["Pesticide"] / safe_area
+
+    return df
 
 
 def train_one_dataset(name, config):
@@ -44,12 +56,15 @@ def train_one_dataset(name, config):
     df = df.drop(columns=drop_columns)
 
     df = df.dropna(subset=[target])
+    df = add_engineered_features(df)
 
     X = df.drop(columns=[target])
     y = df[target]
 
     numeric_features = X.select_dtypes(include=["int64", "float64"]).columns.tolist()
-    categorical_features = X.select_dtypes(include=["object", "category", "bool"]).columns.tolist()
+    categorical_features = X.select_dtypes(
+        include=["object", "string", "category", "bool"]
+    ).columns.tolist()
 
     numeric_transformer = Pipeline(steps=[
         ("imputer", SimpleImputer(strategy="median"))

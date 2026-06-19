@@ -10,19 +10,25 @@
         "Production",
         "Annual_Rainfall",
         "Fertilizer",
-        "Pesticide"
+        "Pesticide",
+        "Production_per_Area",
+        "Fertilizer_per_Area",
+        "Pesticide_per_Area"
     ],
     "target": "Yield",
-    "r2_score": 0.9864,
-    "mae": 7.7108,
-    "rmse": 104.5165,
+    "r2_score": 0.995,
+    "mae": 4.0694,
+    "rmse": 63.034,
     "numeric_features": [
         "Crop_Year",
         "Area",
         "Production",
         "Annual_Rainfall",
         "Fertilizer",
-        "Pesticide"
+        "Pesticide",
+        "Production_per_Area",
+        "Fertilizer_per_Area",
+        "Pesticide_per_Area"
     ],
     "categorical_features": [
         "Crop",
